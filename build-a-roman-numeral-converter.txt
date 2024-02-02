@@ -1,0 +1,105 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset='utf-8' />
+    <meta content="viewport" width="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Roman Numeral Converter</title>
+  </head>
+  <body>
+    <h1>Roman Numeral Converter</h1>
+    <div id="block">
+      <h3>Enter a number:</h3>
+      <input id="number"/>
+      <button id="convert-btn">Convert</button>
+      <div id="output"></div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+body {
+  background-color: rgb(0, 100, 225);
+}
+
+h1 {
+  text-align: center;
+  padding-top: 50px;
+  font-size: 50px;
+}
+
+#block {
+  background-color: rgb(0, 200, 100);
+  border: 2px solid white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 300px;
+  height: 150px;
+}
+
+#number {
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+** end of undefined **
+
+** start of undefined **
+
+const convertButton = document.getElementById('convert-btn');
+
+const dict = {
+    M: 1000, 
+    CM: 900, 
+    D: 500, 
+    CD: 400, 
+    C: 100, 
+    XC: 90, 
+    L: 50, 
+    XL: 40, 
+    X: 10, 
+    IX: 9, 
+    V: 5, 
+    IV: 4, 
+    I: 1
+};
+
+const convertNumber = () => {
+  let number = document.querySelector('#number').value;
+  let romanNumeral = "";
+
+  if (isNaN(number) || number == "") {
+    document.getElementById('output').innerText = "Please enter a valid number";
+    return;
+  } else if (number < 1) {
+    document.getElementById('output').innerText = "Please enter a number greater than or equal to 1";
+    return;
+  } else if (number >= 4000) {
+    document.getElementById('output').innerText = "Please enter a number less than or equal to 3999";
+    return;
+  }
+
+  for (let i in dict) {
+    while (number >= dict[i]) {
+      romanNumeral += i;
+      number -= dict[i];
+    }
+  }
+
+  document.getElementById('output').innerText = romanNumeral;
+}
+
+convertButton.addEventListener("click", convertNumber);
+
+** end of undefined **
+
